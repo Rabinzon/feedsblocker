@@ -1,7 +1,10 @@
 import {find, equals, memoize} from 'ramda';
 import data from './data.json';
 
-localStorage.setItem('data', JSON.stringify(data));
+(() =>
+	localStorage.getItem('data') ? '' :
+		localStorage.setItem('data', JSON.stringify(data))
+)();
 
 const getData = () =>
 	JSON.parse(localStorage.getItem('data'));
