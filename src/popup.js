@@ -44,7 +44,8 @@ const addUrls = function () {
 		localStorage.setItem('data', JSON.stringify(store));
 		this.list = listify(getStore('data'));
 		clearFormData();
-	} else {
+	}
+	else {
 		toggleError.apply(this, [true]);
 		console.error('url is not falid');
 	}
