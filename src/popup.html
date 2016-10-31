@@ -6,19 +6,22 @@
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
 </head>
 <body>
 	<div class="app">
-		<ul>
-			<li v-for="item in list">
+		<ul class="list">
+			<li class="list__item" v-for="item in list">
 				{{item.url}}
 			</li>
 		</ul>
-		<form>
-			<input v-model="form.url" v-on:change="updateFormData" type="text">
-			<input v-model="form.redirect" v-on:change="updateFormData" type="text">
-		</form>
-		<button v-on:click="addUrls">block</button>
+		<div class="form-wrapp">
+			<form class="form">
+				<input class="form__input" v-model="form.url" v-on:change="updateFormData" type="text">
+				<input class="form__input" v-model="form.redirect" v-on:change="updateFormData" type="text">
+			</form>
+			<button class="form__button" v-on:click="addUrls">block</button>
+		</div>
 	</div>
 	<script type="text/javascript" src="popup.js"></script>
 </body>
