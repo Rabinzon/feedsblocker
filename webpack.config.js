@@ -14,8 +14,16 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.js$/,
-				loader: 'babel-loader'
-			}
+				loader: 'babel-loader',
+				query: {
+					presets: ['es2015']
+				},
+				plugins: ['ramda']
+			},
+			{
+				test: /\.json$/,
+				loader: 'json'
+			},
 		]
 	},
 	plugins: [
