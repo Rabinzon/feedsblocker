@@ -1,0 +1,7 @@
+{
+  "name": "feedsblocker",
+  "version": "0.0.1",
+  "main": "background.js",
+  "author": "rabinzon <ildarrazin@gmail.com>",
+  "license": "MIT"
+}
