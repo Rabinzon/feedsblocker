@@ -16,6 +16,7 @@
 			</li>
 		</ul>
 		<div class="form-wrapp">
+			<h1 v-if="error">error</h1>
 			<form class="form">
 				<input class="form__input" v-model="form.url" v-on:change="updateFormData" type="text">
 				<input class="form__input" v-model="form.redirect" v-on:change="updateFormData" type="text">
