@@ -6,22 +6,32 @@
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
 	<link rel="stylesheet" href="main.css">
 </head>
 <body>
 	<div class="app">
-		<ul class="list">
-			<li class="list__item" v-for="item in list">
-				{{item.url}}
-			</li>
-		</ul>
-		<div class="form-wrapp">
-			<h1 v-if="error">error</h1>
-			<form class="form">
-				<input class="form__input" v-model="form.url" v-on:change="updateFormData" type="text">
-				<input class="form__input" v-model="form.redirect" v-on:change="updateFormData" type="text">
-			</form>
-			<button class="form__button" v-on:click="addUrls">block</button>
+		<div class="container">
+			<h4>Black list:</h4>
+			<div class="list list-group">
+				<button type="button" v-for="item in list" class="list-group-item list-group-item-action">{{item.url}}</button>
+			</div>
+			<div class="form-wrapp">
+				<div class="alert alert-danger" v-if="error" role="alert">
+					<strong>Error!</strong> You should put currect url address.
+				</div>
+				<form class="form">
+					<div class="form-group">
+						<label for="url-input">Url</label>
+						<input id="url-input" class="form__input form-control" v-model="form.url" v-on:change="updateFormData" type="text">
+					</div>
+					<div class="form-group">
+						<label for="redirect-input">Redirect</label>
+						<input id="redirect-input" class="form__input form-control" v-model="form.redirect" v-on:change="updateFormData" type="text">
+					</div>
+					<button class="form__button btn btn-success" type="button" v-on:click="addUrls">block</button>
+				</form>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="popup.js"></script>
