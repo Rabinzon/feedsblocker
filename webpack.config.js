@@ -1,11 +1,13 @@
-const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const stylusLoader = ExtractTextPlugin.extract('style-loader', 'css-loader!stylus-loader');
 
 module.exports = {
 	entry: {
 		background: './src/background.js',
 		content: './src/content.js',
-		popup: './src/popup.js'
+		popup: './src/popup.js',
+		main: './src/popup.styl'
 	},
 	output: {
 		path: './dist/',
@@ -14,7 +16,8 @@ module.exports = {
 	resolve: {
 		alias: {
 			vue: 'vue/dist/vue.js'
-		}
+		},
+		extensions: ['', '.js', '.styl']
 	},
 	module: {
 		loaders: [
@@ -30,15 +33,22 @@ module.exports = {
 				test: /\.json$/,
 				loader: 'json'
 			},
+			{
+				test: /\.styl$/,
+				loader: stylusLoader
+			}
 		]
 	},
 	plugins: [
+		new ExtractTextPlugin('[name].css'),
 		new CopyWebpackPlugin([
 			{
 				context: './src/',
-				from: "*",
-				to: "./"
+				from: '*',
+				to: './'
 			}
-		])
+		], {
+			ignore: ['*.styl']
+		})
 	]
 };
