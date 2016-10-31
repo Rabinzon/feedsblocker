@@ -1,0 +1,17 @@
+[
+  {
+	"url": [
+	  "https://www.youtube.com/",
+	  "https://www.youtube.com/?gl=RU&hl=ru",
+	  "https://www.youtube.com/?gl=RU&=ru"
+	],
+	"rederect": "https://www.youtube.com/feed/subscriptions"
+  },
+  {
+	"url": [
+	  "https://vk.com/feed",
+	  "https://new.vk.com/feed"
+	],
+	"rederect": "https://vk.com/id0"
+  }
+]
