@@ -1,4 +1,4 @@
-import {find, equals} from 'ramda';
+import {find, equals, memoize} from 'ramda';
 import data from './data.json';
 
 localStorage.setItem('data', JSON.stringify(data));
@@ -9,11 +9,12 @@ const getData = () =>
 const redirect = (id, url) =>
 	chrome.tabs.update(id, {url});
 
-const findUrl = tab =>
-	find(elem => find(equals(tab.url))(elem.url));
+const findUrl = memoize(tabUrl =>
+	find(elem =>
+		find(equals(tabUrl))(elem.url))(getData()));
 
 const checkTab = tab => {
-	const site = findUrl(tab)(getData());
+	const site = findUrl(tab.url);
 	if (site) {
 		redirect(tab.id, site.redirect);
 	}
