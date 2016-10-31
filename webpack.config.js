@@ -4,11 +4,17 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
 	entry: {
 		background: './src/background.js',
-		content: './src/content.js'
+		content: './src/content.js',
+		popup: './src/popup.js'
 	},
 	output: {
 		path: './dist/',
 		filename: '[name].js'
+	},
+	resolve: {
+		alias: {
+			vue: 'vue/dist/vue.js'
+		}
 	},
 	module: {
 		loaders: [
