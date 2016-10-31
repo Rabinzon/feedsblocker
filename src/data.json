@@ -3,15 +3,16 @@
 	"url": [
 	  "https://www.youtube.com/",
 	  "https://www.youtube.com/?gl=RU&hl=ru",
-	  "https://www.youtube.com/?gl=RU&=ru"
+	  "https://www.youtube.com/?gl=RU&=ru",
+	  "https://www.youtube.com/feed/trending"
 	],
-	"rederect": "https://www.youtube.com/feed/subscriptions"
+	"redirect": "https://www.youtube.com/feed/subscriptions"
   },
   {
 	"url": [
 	  "https://vk.com/feed",
 	  "https://new.vk.com/feed"
 	],
-	"rederect": "https://vk.com/id0"
+	"redirect": "https://vk.com/id0"
   }
 ]
