@@ -3,5 +3,17 @@
   "version": "0.0.1",
   "main": "background.js",
   "author": "rabinzon <ildarrazin@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "lint": "eslint -c .eslintrc ./src/*.js"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.0",
+    "babel-loader": "^6.2.7",
+    "copy-webpack-plugin": "^4.0.0",
+    "eslint": "^3.9.0",
+    "ramda": "^0.22.1",
+    "webpack": "^1.13.3"
+  }
 }
