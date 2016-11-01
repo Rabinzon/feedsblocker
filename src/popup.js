@@ -13,7 +13,7 @@ const check = elem => {
 	return elem;
 };
 
-const listify = (data) => data ? map(check)(data) : '';
+const listify = data => data ? map(check)(data) : '';
 
 const clearFormData = () =>
 	localStorage.removeItem('formData');
@@ -39,6 +39,12 @@ const getFormData = () => {
 
 const toggleError = function (mod) {
 	this.error = mod;
+};
+
+const toggleForm = function () {
+	const state = !getFormState();
+	this.formActive = state;
+	localStorage.setItem('formState', JSON.stringify(state));
 };
 
 const addUrls = function () {
@@ -74,16 +80,10 @@ const updateFormData = function () {
 	localStorage.setItem('formData', JSON.stringify(formData));
 };
 
-const toggleForm = function () {
-	const state = !getFormState();
-	this.formActive = state;
-	localStorage.setItem('formState', JSON.stringify(state));
-};
-
 const clearList = function () {
 	localStorage.removeItem('formData');
 	localStorage.setItem('data', JSON.stringify([]));
-	this.form = getFormData();
+	this.list = listify(getStore('data'));
 };
 
 export const app = new Vue({
