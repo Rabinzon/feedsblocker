@@ -31,6 +31,7 @@
 						<label for="redirect-input">Redirect</label>
 						<input id="redirect-input" class="form__input form-control" v-model="form.redirect" v-on:change="updateFormData" type="text">
 					</div>
+					<button type="button" class="btn btn-secondary" v-on:click="toggleForm">hide form</button>
 					<button class="form__button btn btn-success" type="button" v-on:click="addUrls">block</button>
 				</form>
 			</div>
