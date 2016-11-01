@@ -56,9 +56,7 @@ const addUrls = function () {
 		};
 
 		toggleError.apply(this, [false]);
-		store.push(newUrl);
-
-		setToStore('data', JSON.stringify(store));
+		setToStore('data', JSON.stringify([...store, newUrl]));
 		this.list = listify(getStore('data'));
 		clearFormData.apply(this, []);
 		toggleForm.apply(this, []);
