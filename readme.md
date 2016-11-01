@@ -1,13 +1,6 @@
-language: node_js
-
-node_js:
-  - "stable"
-
-sudo: false
-
-script:
-  - npm run lint
-  
-branches:
-  only:
-    - master
+```bash
+npm or yarn install
+npm start
+npm run build
+npm run lint
+```
