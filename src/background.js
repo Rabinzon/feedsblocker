@@ -1,7 +1,6 @@
 import {
 	find,
-	equals,
-	memoize
+	equals
 } from 'ramda';
 
 import {
@@ -21,9 +20,8 @@ const getData = () => getStore('data');
 const redirect = (id, url) =>
 	chrome.tabs.update(id, {url});
 
-const findUrl = memoize(tabUrl =>
-	find(elem =>
-		find(equals(tabUrl))(elem.url))(getData()));
+const findUrl = tabUrl => find(elem =>
+		find(equals(tabUrl))(elem.url))(getData());
 
 const checkTab = tab => {
 	const site = findUrl(tab.url);
