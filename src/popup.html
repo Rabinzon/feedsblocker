@@ -16,7 +16,9 @@
 			<div class="list list-group">
 				<button type="button" v-for="item in list" class="list-group-item list-group-item-action">{{item.url}}</button>
 			</div>
-			<div class="form-wrapp">
+			<button  v-if="!formActive" class="btn btn-success" type="button" v-on:click="toggleForm">Add</button>
+			<button  v-if="!formActive" class="btn btn-danger" type="button" v-on:click="clearList">Clear List</button>
+			<div v-if="formActive" class="form-wrapp">
 				<div class="alert alert-danger" v-if="error" role="alert">
 					<strong>Error!</strong> You should put currect url address.
 				</div>
@@ -29,6 +31,7 @@
 						<label for="redirect-input">Redirect</label>
 						<input id="redirect-input" class="form__input form-control" v-model="form.redirect" v-on:change="updateFormData" type="text">
 					</div>
+					<button type="button" class="btn btn-secondary" v-on:click="toggleForm">hide form</button>
 					<button class="form__button btn btn-success" type="button" v-on:click="addUrls">block</button>
 				</form>
 			</div>

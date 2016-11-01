@@ -13,10 +13,21 @@ const check = elem => {
 	return elem;
 };
 
-const listify = map(check);
+const listify = data => data ? map(check)(data) : '';
 
 const clearFormData = () =>
 	localStorage.removeItem('formData');
+
+const getFormState = () => {
+	const formState = getStore('formState');
+
+	if (formState) {
+		return formState;
+	}
+
+	localStorage.setItem('formState', 'false');
+	return false;
+};
 
 const getFormData = () => {
 	const formData = getStore('formData');
@@ -28,6 +39,12 @@ const getFormData = () => {
 
 const toggleError = function (mod) {
 	this.error = mod;
+};
+
+const toggleForm = function () {
+	const state = !getFormState();
+	this.formActive = state;
+	localStorage.setItem('formState', JSON.stringify(state));
 };
 
 const addUrls = function () {
@@ -43,7 +60,9 @@ const addUrls = function () {
 
 		localStorage.setItem('data', JSON.stringify(store));
 		this.list = listify(getStore('data'));
-		clearFormData();
+		clearFormData.apply(this, []);
+		toggleForm.apply(this, []);
+		this.form = getFormData();
 	}
 	else {
 		toggleError.apply(this, [true]);
@@ -61,15 +80,24 @@ const updateFormData = function () {
 	localStorage.setItem('formData', JSON.stringify(formData));
 };
 
+const clearList = function () {
+	localStorage.removeItem('formData');
+	localStorage.setItem('data', JSON.stringify([]));
+	this.list = listify(getStore('data'));
+};
+
 export const app = new Vue({
 	el: '.app',
 	data: {
 		list: listify(getStore('data')),
 		form: getFormData(),
-		error: false
+		error: false,
+		formActive: getFormState()
 	},
 	methods: {
 		addUrls,
-		updateFormData
+		updateFormData,
+		toggleForm,
+		clearList
 	}
 });
