@@ -1,13 +1,22 @@
-import {find, equals, memoize} from 'ramda';
+import {
+	find,
+	equals,
+	memoize
+} from 'ramda';
+
+import {
+	getStore,
+	setToStore
+} from './store';
+
 import data from './data.json';
 
 (() =>
-	localStorage.getItem('data') ? '' :
-		localStorage.setItem('data', JSON.stringify(data))
+		getStore('data') ? '' :
+			setToStore('data', JSON.stringify(data))
 )();
 
-const getData = () =>
-	JSON.parse(localStorage.getItem('data'));
+const getData = () => getStore('data');
 
 const redirect = (id, url) =>
 	chrome.tabs.update(id, {url});

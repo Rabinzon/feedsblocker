@@ -1,9 +1,12 @@
 import Vue from 'vue';
 import {map} from 'ramda';
 import validaUrl from 'valid-url';
-
-const getStore = key =>
-	JSON.parse(localStorage.getItem(key));
+import {
+	clearFormData,
+	getStore,
+	setToStore,
+	removeFromStore
+} from './store';
 
 const check = elem => {
 	if (elem.url instanceof Array) {
@@ -15,9 +18,6 @@ const check = elem => {
 
 const listify = data => data ? map(check)(data) : '';
 
-const clearFormData = () =>
-	localStorage.removeItem('formData');
-
 const getFormState = () => {
 	const formState = getStore('formState');
 
@@ -25,7 +25,7 @@ const getFormState = () => {
 		return formState;
 	}
 
-	localStorage.setItem('formState', 'false');
+	setToStore('formState', 'false');
 	return false;
 };
 
@@ -37,14 +37,14 @@ const getFormData = () => {
 	return {url: '', redirect: ''};
 };
 
-const toggleError = function (mod) {
-	this.error = mod;
+const toggleError = function (state) {
+	this.error = state;
 };
 
 const toggleForm = function () {
 	const state = !getFormState();
 	this.formActive = state;
-	localStorage.setItem('formState', JSON.stringify(state));
+	setToStore('formState', JSON.stringify(state));
 };
 
 const addUrls = function () {
@@ -58,7 +58,7 @@ const addUrls = function () {
 		toggleError.apply(this, [false]);
 		store.push(newUrl);
 
-		localStorage.setItem('data', JSON.stringify(store));
+		setToStore('data', JSON.stringify(store));
 		this.list = listify(getStore('data'));
 		clearFormData.apply(this, []);
 		toggleForm.apply(this, []);
@@ -77,12 +77,12 @@ const updateFormData = function () {
 		redirect: this.form.redirect
 	};
 
-	localStorage.setItem('formData', JSON.stringify(formData));
+	setToStore('formData', JSON.stringify(formData));
 };
 
 const clearList = function () {
-	localStorage.removeItem('formData');
-	localStorage.setItem('data', JSON.stringify([]));
+	removeFromStore('formData');
+	setToStore('data', JSON.stringify([]));
 	this.list = listify(getStore('data'));
 };
 
